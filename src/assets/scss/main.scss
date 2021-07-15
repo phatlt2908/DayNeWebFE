@@ -1,0 +1,12 @@
+// Bulma Import
+@import "~bulma";
+
+@font-face {
+    font-family: "minecraft";
+    src: URL("../fonts/minecraft.ttf") format("truetype");
+}
+
+.minecraft-font {
+    font-family: minecraft;
+    padding-bottom: 8px;
+}
