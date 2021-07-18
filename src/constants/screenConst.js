@@ -1,17 +1,17 @@
 const screen = {
-    home: {
+    HOME: {
         path: "home",
         name: "Trang chủ"
     },
-    login: {
+    LOGIN: {
         path: "login",
         name: "Đăng nhập"
     },
-    register: {
+    REGISTER: {
         path: "register",
         name: "Đăng ký"
     },
-    changePassword: {
+    CHANGE_PASSWORD: {
         path: "changePassword",
         name: "Đổi mật khẩu"
     },

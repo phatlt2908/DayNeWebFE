@@ -34,7 +34,7 @@
           </router-link>
           <div class="navbar-item has-dropdown is-hoverable">
             <a
-              class="navbar-link"
+              class="navbar-link is-arrowless"
               href="https://bulma.io/documentation/overview/start/"
             >
               Hướng dẫn
@@ -63,8 +63,37 @@
           </div>
         </div>
 
-        <div class="navbar-end">
-          <div class="navbar-item">
+        <div class="navbar-end minecraft-font">
+          <div v-if="isLogged" class="navbar-item has-dropdown is-hoverable">
+            <a
+              class="navbar-link"
+              href="https://bulma.io/documentation/overview/start/"
+            >
+              {{ user.getUsername() }}
+            </a>
+            <div class="navbar-dropdown is-boxed is-right">
+              <a
+                class="navbar-item"
+                href="https://bulma.io/documentation/overview/start/"
+              >
+                Mẹo minecraft
+              </a>
+              <hr class="navbar-divider" />
+              <a
+                class="navbar-item"
+                href="https://bulma.io/documentation/elements/box/"
+              >
+                Mods
+              </a>
+              <a
+                class="navbar-item is-active"
+                href="https://bulma.io/documentation/components/breadcrumb/"
+              >
+                Components
+              </a>
+            </div>
+          </div>
+          <div v-else class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
                 <router-link
@@ -78,12 +107,12 @@
                 </router-link>
               </p>
               <p class="control">
-                <a class="button is-primary">
+                <router-link :to="{ name: 'login' }" class="button is-primary">
                   <!-- <span class="icon">
                     <i class="fas fa-download"></i>
                   </span> -->
                   <span class="minecraft-font"> Đăng nhập </span>
-                </a>
+                </router-link>
               </p>
             </div>
           </div>
@@ -101,9 +130,17 @@ export default {
       isActiveMobile: false,
     };
   },
+  created() {
+    console.log("user.getData() >>> ", this.user.getData());
+  },
   methods: {
     onBurger() {
       this.isActiveMobile = !this.isActiveMobile;
+    },
+  },
+  computed: {
+    isLogged() {
+      return this.user.islogged();
     },
   },
 };

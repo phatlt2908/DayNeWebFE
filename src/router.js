@@ -7,7 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect: '/' + screenConst.home.path,
+    redirect: '/' + screenConst.HOME.path,
     content: 'Lắc Minecraft Server',
   },
   {
@@ -15,7 +15,7 @@ const routes = [
     component: MainLayout,
     children: [
       {
-        path: screenConst.home.path,
+        path: screenConst.HOME.path,
         component: () => import('@/views/Home'),
         name: 'home',
         meta: {
@@ -25,21 +25,32 @@ const routes = [
         }
       },
       {
-        path: screenConst.register.path,
+        path: screenConst.REGISTER.path,
         component: () => import('@/views/Register'),
         name: 'register',
         meta: {
           title: 'Đăng ký',
           content: 'Đăng ký',
           active: 'register',
-          breadcrumb: [screenConst.home, screenConst.register]
+          breadcrumb: [screenConst.HOME, screenConst.REGISTER]
+        }
+      },
+      {
+        path: screenConst.LOGIN.path,
+        component: () => import('@/views/Login'),
+        name: 'login',
+        meta: {
+          title: 'Đăng nhập',
+          content: 'Đăng nhập',
+          active: 'login',
+          breadcrumb: [screenConst.HOME, screenConst.LOGIN]
         }
       }
     ]
   },
   {
     path: '/*.*',
-    redirect: '/' + screenConst.home.path
+    redirect: '/' + screenConst.HOME.path
   }
 ]
 
