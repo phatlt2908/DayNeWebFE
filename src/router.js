@@ -1,4 +1,5 @@
 import screenConst from './constants/screenConst'
+import $store from "./store";
 
 import MainLayout from '@/components/layouts/MainLayout'
 
@@ -21,7 +22,9 @@ const routes = [
         meta: {
           title: 'Trang chủ',
           content: 'Minecraft ở đây này.',
-          active: 'home'
+          active: 'home',
+          requireLogged: false,
+          requireNotLogged: false
         }
       },
       {
@@ -32,7 +35,9 @@ const routes = [
           title: 'Đăng ký',
           content: 'Đăng ký',
           active: 'register',
-          breadcrumb: [screenConst.HOME, screenConst.REGISTER]
+          breadcrumb: [screenConst.HOME, screenConst.REGISTER],
+          requireLogged: false,
+          requireNotLogged: true
         }
       },
       {
@@ -43,7 +48,22 @@ const routes = [
           title: 'Đăng nhập',
           content: 'Đăng nhập',
           active: 'login',
-          breadcrumb: [screenConst.HOME, screenConst.LOGIN]
+          breadcrumb: [screenConst.HOME, screenConst.LOGIN],
+          requireLogged: false,
+          requireNotLogged: true
+        }
+      },
+      {
+        path: screenConst.CHANGE_PASSWORD.path,
+        component: () => import('@/views/ChangePassword'),
+        name: 'changePassword',
+        meta: {
+          title: 'Đổi mật khẩu',
+          content: 'Đổi mật khẩu',
+          active: 'changePassword',
+          breadcrumb: [screenConst.HOME, screenConst.CHANGE_PASSWORD],
+          requireLogged: true,
+          requireNotLogged: false
         }
       }
     ]
@@ -60,6 +80,20 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if ($store.state.user.isLogged && to.meta.requireNotLogged) {
+    next({
+      path: screenConst.HOME.path
+    })
+    return;
+  }
+
+  if (!$store.state.user.isLogged && to.meta.requireLogged) {
+    next({
+      path: screenConst.HOME.path
+    })
+    return;
+  }
+
   document.title = to.meta.title + ' | Đây nè'
   next()
 })

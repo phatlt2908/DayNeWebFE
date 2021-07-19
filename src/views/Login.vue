@@ -2,9 +2,7 @@
   <div>
     <div class="field">
       <label class="label">Tài khoản</label>
-      <div
-        class="control has-icons-left"
-      >
+      <div class="control has-icons-left">
         <input
           class="input"
           type="text"
@@ -25,6 +23,7 @@
           type="password"
           placeholder="Mật khẩu"
           v-model="password"
+          @keydown="checkKeydown"
         />
       </div>
     </div>
@@ -32,9 +31,9 @@
     <div class="field is-grouped mt-3">
       <div class="control">
         <button
-          @click="login"
           class="button is-primary"
           :class="{ 'is-loading': isLoging }"
+          @click="login"
         >
           <span>Đăng nhập</span>
           <span class="icon">
@@ -48,6 +47,7 @@
 
 <script>
 import api from "../services/api";
+import axios from "../axios";
 
 export default {
   name: "Login",
@@ -70,7 +70,6 @@ export default {
       api
         .login(loginForm)
         .then((res) => {
-          console.log("Login successfully ", res);
           this.$swal({
             icon: "success",
             title: "Đăng nhập thành công",
@@ -81,8 +80,15 @@ export default {
             type: "success",
           });
 
-          this.user.setLogged(res.data);
+          let accessToken = res.data.token;
 
+          if (!accessToken.startsWith("Bearer ")) {
+            accessToken = "Bearer " + accessToken;
+          }
+
+          axios.defaults.headers.common["authorization"] = accessToken;
+          localStorage.setItem("accessToken", accessToken);
+          this.$store.dispatch("login", res.data);
           this.$router.push({ name: "home" });
         })
         .catch((err) => {
@@ -92,13 +98,18 @@ export default {
             title: "Lỗi đăng nhập :(",
             text: "Tài khoản hoặc mật khẩu không đúng",
             timer: 3000,
-            showConfirmButton: false,
+            showConfirmButton: true,
             type: "error",
           });
         })
         .finally(() => {
           this.isLoging = false;
         });
+    },
+    checkKeydown(event) {
+      if (event.keyCode === 13) {
+        this.login();
+      }
     },
   },
 };

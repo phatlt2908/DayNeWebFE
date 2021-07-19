@@ -11,16 +11,15 @@ require('@/assets/scss/main.scss')
 require('@/plugins/fontawesome.js')
 
 // import api from './services/api'
-import user from './services/user'
+import store from './store'
 
 const vueApp = createApp(App)
 vueApp.use(VueSweetalert2)
 vueApp.use(router)
+vueApp.use(store)
 vueApp.component("font-awesome-icon", FontAwesomeIcon)
 
 vueApp.mount('#app')
-
-vueApp.config.globalProperties.user = user
 
 // Global use api
 // If want to use api in global (dont need to import in per file)

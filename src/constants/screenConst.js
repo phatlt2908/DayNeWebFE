@@ -12,8 +12,12 @@ const screen = {
         name: "Đăng ký"
     },
     CHANGE_PASSWORD: {
-        path: "changePassword",
+        path: "change-password",
         name: "Đổi mật khẩu"
+    },
+    USER_INFO: {
+        path: "user-info",
+        name: "Thông tin người dùng"
     },
 }
 

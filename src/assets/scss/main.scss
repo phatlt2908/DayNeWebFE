@@ -10,10 +10,14 @@ $spacer: 1rem;
 
 .minecraft-font {
     font-family: minecraft;
-    padding-bottom: 8px;
 }
 
-.minecraft-font .navbar-link:not(.is-arrowless)::after {
+.minecraft-font-padding {
+    font-family: minecraft;
+    padding-bottom: 8px !important;
+}
+
+.minecraft-font-padding .navbar-link:not(.is-arrowless)::after {
     border-color: #485fc7;
     margin-top: -0.2em;
     right: 1.125em;
@@ -31,4 +35,8 @@ $spacer: 1rem;
 }
 .mt-3 {
     margin-top: ($spacer) !important;
+}
+
+h1, h2, h3, p {
+    font-family: minecraft;
 }
