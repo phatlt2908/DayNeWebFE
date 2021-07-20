@@ -2,8 +2,8 @@
   "name": "lac-minecraft-web",
   "version": "0.1.0",
   "private": true,
-  "start": "HOST='0.0.0.0' npm run serve",
   "scripts": {
+    "start": "HOST='0.0.0.0' npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
