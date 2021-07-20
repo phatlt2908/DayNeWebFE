@@ -97,7 +97,6 @@ export default {
             icon: "error",
             title: "Lỗi đăng nhập :(",
             text: "Tài khoản hoặc mật khẩu không đúng",
-            timer: 3000,
             showConfirmButton: true,
             type: "error",
           });

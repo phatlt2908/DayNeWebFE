@@ -1,13 +1,18 @@
 <template>
   <body>
     <Top />
-    <section class="hero is-medium is-bold is-primary">
-      <div class="hero-body">
+    <section
+      class="hero is-medium is-bold is-primary"
+      :style="{
+        'background-image': 'url(' + image + ')',
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover',
+      }"
+    >
+      <div class="hero-body minecraft-font">
         <div class="container">
           <h1 class="title is-2">Minecraft Đây Nè!</h1>
-          <p class="subtitle is-3">
-            Chính thức mở server bản thử nghiệm
-          </p>
+          <p class="subtitle is-3">Chính thức mở server bản thử nghiệm</p>
         </div>
       </div>
     </section>
@@ -37,6 +42,11 @@ import Top from "@/components/Top.vue";
 
 export default {
   name: "MainLayout",
+  data() {
+    return {
+      image: "https://i.imgur.com/9RHhWEo.jpeg",
+    };
+  },
   components: {
     Top,
   },

@@ -37,6 +37,10 @@ $spacer: 1rem;
     margin-top: ($spacer) !important;
 }
 
-h1, h2, h3, p {
+h1, h2, h3 {
+    font-family: minecraft;
+}
+
+.swal2-popup {
     font-family: minecraft;
 }
