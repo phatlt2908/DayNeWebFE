@@ -20,7 +20,7 @@ const routes = [
         component: () => import('@/views/Home'),
         name: 'home',
         meta: {
-          title: 'Trang chủ',
+          title: '',
           content: 'Minecraft ở đây này.',
           active: 'home',
           requireLogged: false,
