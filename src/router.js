@@ -94,7 +94,7 @@ router.beforeEach((to, from, next) => {
     return;
   }
 
-  document.title = to.meta.title + ' | Đây nè'
+  document.title = to.meta.title ? to.meta.title + ' | Đây nè' : 'Đây nè | Minecraft'
   next()
 })
 
