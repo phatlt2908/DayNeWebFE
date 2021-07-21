@@ -1,4 +1,4 @@
-# lac-minecraft-web
+# day-ne-minecraft
 
 ## Project setup
 ```
