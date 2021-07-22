@@ -210,8 +210,14 @@ export default {
     },
     async submit() {
       this.isSubmitting = true;
-      
-      let myIp = await api.getIp();
+
+      let myIp;
+      try {
+        myIp = await api.getIp();
+      } catch (error) {
+        console.error(error);
+        myIp = "";
+      }
 
       let registerForm = {
         username: this.username,
